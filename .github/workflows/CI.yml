@@ -32,7 +32,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: testes postman
         run: 
-          newman run postman_collection.json -e postman_environment.json -r htmlextra  --reporter-htmlextra-export ./results/Report.html
+          newman run "postman_collection.json" environment "postman_environment.json" -r htmlextra  --reporter-htmlextra-export ./results/Report.html
       - name: Arquive Robot Framework formulario
         if: ${{always() }}
         uses: actions/upload-artifact@v3
