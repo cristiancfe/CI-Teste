@@ -38,14 +38,14 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Postman testes
-          path: ./results/Report.html
+          path: ./results/
       - name: Setup Pages
         uses: actions/configure-pages@v2
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./results/Report.html
+          path: ./results/
 
       - name: Deploy to Github Pages
         id: deployment
