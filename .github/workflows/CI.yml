@@ -1,23 +1,20 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
- # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+   build:
     runs-on: ubuntu-latest
-
+    permissions:
+     contents: read
+     pages: write
+     id-token: write
+    environment:
+      name: github-pages
+      url: https://cristiancfe.github.io/CI_Teste/report.html
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,12 +30,25 @@ jobs:
           sudo npm install -g newman-reporter-htmlextra    
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: testes postman
         run: 
           newman run postman_collection.json -e postman_environment.json -r -htmlextra  --reporter-htmlextra-export ./results/Report.html
+      - name: Arquive Robot Framework formulario
+        if: ${{always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Postman testes
+          path: ./results/Report.html
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./results/Report.html
+
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1  
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      
