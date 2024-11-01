@@ -32,7 +32,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: testes postman
         run: 
-          newman run "login_collection.json" -e "env.json" --delay-request 1 --reporters cli, -r htmlextra --reporter-htmlextra-export ./result/report.html
+          newman run "login_collection.json" -e "env.json" --delay-request 1 --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/report.html
           
       - name: Arquive Robot Framework formulario
         if: ${{always() }}
