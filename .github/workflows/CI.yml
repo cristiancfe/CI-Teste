@@ -34,7 +34,7 @@ jobs:
         run: 
           newman run "collection.json" -e "env.json" --delay-request 1 --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/report.html
           
-      - name: Arquive Robot Framework formulario
+      - name: Arquive Postman gerados com newman
         if: ${{always() }}
         uses: actions/upload-artifact@v3
         with:
