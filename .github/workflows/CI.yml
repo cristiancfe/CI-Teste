@@ -40,36 +40,34 @@ jobs:
         with:
           name: Postman testes
           path: ./results
-deploy:
-     - name: Deploy GitHub Pages 🌐
-        runs-on:ubuntu-latest
-       if: ${{always()}}
-       needs: 
-       test:
-        permissions:
+    deploy:
+         - name: Deploy GitHub Pages 🌐
+            runs-on:ubuntu-latest
+           if: ${{always()}}
+           needs: 
+           test:
+   permissions:
         contents: read
         pages: write
         id-token: write
         environment:
-        name: github-pages
-        url: https://cristiancfe.github.io/postman_ci/Report.html
-steps:
-    - name: Setup Pages
-      uses: actions/configure-pages@v5
+          name: github-pages
+          url: https://cristiancfe.github.io/postman_ci/report.html
+        steps:
+        - name: Setup Pages
+          uses: actions/configure-pages@v5
 
-    - name: Download Artifacts
-      uses: actions/download-artifact@v4
-      with: 
+        - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with: 
           name: report
- 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-          path: ./
-
-    - name: Deploy to Github Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+          uses: actions/upload-pages-artifact@v3
+          with:
+          path: ./results
+          name: Deploy to Github Pages
+          if: ${{ always() }}
+          id: deployment
+          uses: actions/deploy-pages@v1 
           
       # - name: Setup Pages
       #   if: ${{ always() }}
