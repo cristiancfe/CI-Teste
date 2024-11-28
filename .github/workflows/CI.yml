@@ -64,10 +64,11 @@ jobs:
           uses: actions/upload-pages-artifact@v3
           with:
           path: ./results
+          
           name: Deploy to Github Pages
           if: ${{ always() }}
           id: deployment
-          uses: actions/deploy-pages@v1 
+          uses: actions/deploy-pages@v4 
           
       # - name: Setup Pages
       #   if: ${{ always() }}
