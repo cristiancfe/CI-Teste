@@ -14,7 +14,7 @@ jobs:
      id-token: write
     environment:
       name: github-pages
-      url: https://cristiancfe.github.io/CI-Teste/report.html
+      url: https://cristiancfe.github.io/CI-Teste-API-com-Postman/report.html
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
