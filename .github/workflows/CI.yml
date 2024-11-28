@@ -41,14 +41,17 @@ jobs:
           name: Postman testes
           path: ./results
       - name: Setup Pages
+        if: ${{ always() }}
         uses: actions/configure-pages@v2
 
       - name: Upload artifact
+        if: ${{ always() }}
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./results/
 
       - name: Deploy to Github Pages
+        if: ${{ always() }}
         id: deployment
         uses: actions/deploy-pages@v1  
       # Runs a set of commands using the runners shell
